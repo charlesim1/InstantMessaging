@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  <display-name>InstantMessaging</display-name>
+  
+  <servlet>
+    <servlet-name>message</servlet-name>
+    <servlet-class>com.InstantMessaging.login.Login</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>message</servlet-name>
+    <url-pattern>/send</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>signupPage</servlet-name>
+    <servlet-class>com.InstantMessaging.login.SignUpForm</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>signupPage</servlet-name>
+    <url-pattern>/signupForm</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>confirmSignUp</servlet-name>
+    <servlet-class>com.InstantMessaging.login.SignUpComplete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>confirmSignUp</servlet-name>
+    <url-pattern>/signUpComplete</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>/WEB-INF/main/index.jsp</welcome-file>
+  </welcome-file-list>
+  
+</web-app>
