@@ -34,6 +34,7 @@ public class Login extends HttpServlet {
 		String attemptedPass = req.getParameter("pass");
 		String id = "";
 		String pass = "";
+		String friends = "";
 		
 		try {
 			// Getting connection to database
@@ -41,11 +42,12 @@ public class Login extends HttpServlet {
 			stmt = conn.createStatement();
 			
 			// Getting the correct id and password form the database
-			String sql = "SELECT ID, PASSWORD FROM t_user WHERE id='" + attemptedId + "'";
+			String sql = "SELECT ID, PASSWORD, FRIENDS FROM t_user WHERE id='" + attemptedId + "'";
 			ResultSet rs = stmt.executeQuery(sql);
 			rs.next();
 			id = rs.getString(1);
 			pass = rs.getString(2);
+			friends = rs.getString(3);
 			
 			// Comparing the usernames and passwords
 			if (attemptedId.equals(id) && attemptedPass.equals(pass)) {
@@ -57,10 +59,12 @@ public class Login extends HttpServlet {
 		}
 		
 		if (loginPass) { // if their credentials are correct, the user is redirected to instant messaging page
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/login/signUpConfirm.jsp");
+			req.setAttribute("friends", friends);
+			req.setAttribute("id", id);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/message/messageMain.jsp");
 			dispatcher.forward(req, res);
 		} else { // if their credentials are incorrect, the user is redirected to a screen telling them that their login was incorrect
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/login/signUpConfirm.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/login/loginFail.jsp");
 			dispatcher.forward(req, res);
 		}
 		

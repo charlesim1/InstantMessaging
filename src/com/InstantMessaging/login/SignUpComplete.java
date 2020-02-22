@@ -32,7 +32,7 @@ public class SignUpComplete extends HttpServlet {
 	} 
 	
 	/*
-	 * This function sends the values that the user inputted 
+	 * This function sends the values that the user inputed 
 	 * into the database.
 	 */
 	public void sendInfo(HttpServletRequest req, HttpServletResponse res) throws ClassNotFoundException, SQLException {
@@ -52,6 +52,7 @@ public class SignUpComplete extends HttpServlet {
 			
 			String sql = "INSERT INTO t_user (name, email, id, password) ";
 			sql += "VALUES ('" + name + "', '" + email + "', '" + id + "', '" + password + "')";
+			@SuppressWarnings("unused")
 			ResultSet rs = stmt.executeQuery(sql);
 		} catch (Exception e) {
 			e.printStackTrace();
